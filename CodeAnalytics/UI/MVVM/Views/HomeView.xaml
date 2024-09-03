@@ -6,6 +6,6 @@
              mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
-        <TextBlock>хуй пизда сковрода</TextBlock>
+        <TextBlock>хуй пизда сковорода</TextBlock>
     </Grid>
 </UserControl>
