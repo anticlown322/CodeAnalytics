@@ -1,0 +1,97 @@
+﻿<Window x:Class="UI.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:viewModels="clr-namespace:UI.MVVM.ViewModels"
+        mc:Ignorable="d"
+        Height="720" 
+        Width="1050"
+        WindowStyle="None"
+        ResizeMode="NoResize"
+        AllowsTransparency="True"
+        Background="Transparent"
+        WindowStartupLocation="CenterScreen"
+        Name="WndMain">
+    <Window.DataContext>
+        <viewModels:MainViewModel/>
+    </Window.DataContext>
+        
+    <!--View-->
+    <Border CornerRadius="20"
+            BorderThickness="1"
+            Opacity="0.97"
+            MouseDown="DragWindow">
+        <Border.BorderBrush>
+            <LinearGradientBrush StartPoint="0, 0" EndPoint="1, 1">
+                <GradientStop Color="{StaticResource WindowBorderColor1}" Offset="0"/>
+                <GradientStop Color="{StaticResource WindowBorderColor2}" Offset="0.5"/>
+                <GradientStop Color="{StaticResource WindowBorderColor3}" Offset="1"/>
+            </LinearGradientBrush>
+        </Border.BorderBrush>
+        <Border.Background>
+            <LinearGradientBrush StartPoint="0, 0" EndPoint="1, 0.7">
+                <GradientStop Color="{StaticResource PrimaryColorLight}" Offset="0"/>
+                <GradientStop Color="{StaticResource PrimaryColorDark}" Offset="1"/>
+            </LinearGradientBrush>
+        </Border.Background>
+
+        <!--Layout-->
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <!--Top Panel-->
+            <StackPanel Grid.Column="1"
+                        Grid.Row="0"
+                        MouseDown="DragWindow"
+                        Orientation="Horizontal"
+                        FlowDirection="RightToLeft"
+                        Margin="10 0 10 0">
+                <Button Command="{Binding CloseWindowCommand}"
+                        CommandParameter="{Binding ElementName=WndMain}"
+                        Style="{StaticResource TopMenuButtonTheme}"
+                        />
+                <Button Command="{Binding MinimizeWindowCommand}"
+                        CommandParameter="{Binding ElementName=WndMain}"
+                        Style="{StaticResource TopMenuButtonTheme}"
+                        />
+            </StackPanel>
+
+            <!--Left Panel-->
+            <Border Grid.Row="0"
+                    Grid.Column="0"
+                    Grid.RowSpan="2"
+                    CornerRadius="20 0 0 20"
+                    Background="{StaticResource PrimaryColorDark_Solid}">
+                <StackPanel>
+                    <TextBlock Grid.Row="0"
+                               Grid.Column="0"
+                               HorizontalAlignment="Left"
+                               VerticalAlignment="Center"
+                               Foreground="{StaticResource MenuTextColorLight_Solid}"
+                               FontSize="24"
+                               FontFamily="Century Gothic"
+                               FontStyle="Italic"
+                               FontWeight="Bold"
+                               Margin="30,10,0,10">   
+                       AV Analytics
+                    </TextBlock>
+                </StackPanel>
+            </Border>
+
+            <!--Client window-->
+            <ContentControl Grid.Row="1"
+                            Grid.Column="1"
+                            Margin="10"
+                            Content="{Binding CurrentView}">
+            </ContentControl>
+        </Grid>
+    </Border>
+</Window>
