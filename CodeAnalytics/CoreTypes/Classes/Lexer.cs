@@ -65,6 +65,8 @@ public class Lexer
             textBuilder.Append(text[i]);
             i++;
         }
+
+        textBuilder.Append(text[i]);
         return textBuilder.ToString();
     }
     
@@ -124,39 +126,43 @@ public class Lexer
         {
             if (text[i] == '(')
             {
-                while (i > 0 && text[i - 1] == ' ') // идем влево, пока не кончатся пробелы
+                do
                 {
                     i--;
                     leftShift++;
-                }
+                } while (i > 0 && text[i] == ' '); // идем влево, пока не кончатся пробелы
+                
                 if (char.IsLetterOrDigit(text[i])) // если текущий символ не буква/цифра, то это не название функции
                 {
                     StringBuilder functionNameBuilder = new StringBuilder();
-                    while (i > 0 && text[i] != ' ')
+                    while (i >= 0 && char.IsLetterOrDigit(text[i]))
                     {
                         functionNameBuilder.Append(text[i]);
                         i--;
+                        leftShift++;
                     } 
-                    string functionName = new string(functionNameBuilder.ToString().Reverse().ToArray());
+                    string functionName = new string(functionNameBuilder.ToString().Reverse().ToArray()) + "()";
                     if (!functions.TryAdd(functionName, 1))
                     {
                         functions[functionName]++;
                     }
                 }
-                else
+
+                if (leftShift != 0)
                 {
-                    i += leftShift + 2; // +2, чтобы скипнуть это "(", которая оказалась не функцией, и идти дальше 
+                    i += leftShift + 1; // +2, чтобы скипнуть "(", которая оказалась не функцией, и идти дальше 
+                    leftShift = 0;
                 }
             }
             i++;
         }
-
+        
         return functions;
     }
     
     public static void CountOperators(string text)
     {
-        //text = CleanText(text);
+        text = CleanText(text);
         foreach (var oper in NonСontroversialOperators)
         {
             Console.WriteLine(oper + ": " + CountOccurrences(ref text, oper));
