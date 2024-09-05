@@ -8,7 +8,6 @@
 
     <ItemGroup>
       <Folder Include="Abstract\" />
-      <Folder Include="Classes\" />
       <Folder Include="Enum\" />
       <Folder Include="Interfaces\" />
     </ItemGroup>
