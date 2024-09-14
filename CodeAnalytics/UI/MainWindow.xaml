@@ -60,14 +60,14 @@
                         Style="{StaticResource TopMenuButtonTheme}">
                     <Button.Content>
                         <!--Don't link images in such way, it's a potential warcrime-->
-                        <Image Source="Resources/Images/close.png"></Image>
+                        <Image Source="/Resources/Images/close.png"></Image>
                     </Button.Content>
                 </Button>
                 <Button Command="{Binding MinimizeWindowCommand}"
                         CommandParameter="{Binding ElementName=WndMain}"
                         Style="{StaticResource TopMenuButtonTheme}">
                     <Button.Content>
-                        <Image Source="Resources/Images/minimize.png"></Image>
+                        <Image Source="/Resources/Images/minimize.png"></Image>
                     </Button.Content>
                 </Button>
             </StackPanel>
