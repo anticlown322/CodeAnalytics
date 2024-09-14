@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:viewModels="clr-namespace:UI.MVVM.ViewModels"
         mc:Ignorable="d"
-        Height="720" 
+        Height="720"
         Width="1050"
         WindowStyle="None"
         ResizeMode="NoResize"
@@ -14,9 +14,9 @@
         WindowStartupLocation="CenterScreen"
         Name="WndMain">
     <Window.DataContext>
-        <viewModels:MainViewModel/>
+        <viewModels:MainViewModel />
     </Window.DataContext>
-        
+
     <!--View-->
     <Border CornerRadius="20"
             BorderThickness="1"
@@ -25,27 +25,27 @@
         <!--View setup-->
         <Border.BorderBrush>
             <LinearGradientBrush StartPoint="0, 0" EndPoint="1, 1">
-                <GradientStop Color="{StaticResource WindowBorderColor1}" Offset="0"/>
-                <GradientStop Color="{StaticResource WindowBorderColor2}" Offset="0.5"/>
-                <GradientStop Color="{StaticResource WindowBorderColor3}" Offset="1"/>
+                <GradientStop Color="{StaticResource WindowBorderColor1}" Offset="0" />
+                <GradientStop Color="{StaticResource WindowBorderColor2}" Offset="0.5" />
+                <GradientStop Color="{StaticResource WindowBorderColor3}" Offset="1" />
             </LinearGradientBrush>
         </Border.BorderBrush>
         <Border.Background>
             <LinearGradientBrush StartPoint="0, 0" EndPoint="1, 0.7">
-                <GradientStop Color="{StaticResource PrimaryColorLight}" Offset="0"/>
-                <GradientStop Color="{StaticResource PrimaryColorDark}" Offset="1"/>
+                <GradientStop Color="{StaticResource PrimaryColorLight}" Offset="0" />
+                <GradientStop Color="{StaticResource PrimaryColorDark}" Offset="1" />
             </LinearGradientBrush>
         </Border.Background>
 
         <!--Layout-->
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="50"/>
-                <RowDefinition Height="*"/>
+                <RowDefinition Height="50" />
+                <RowDefinition Height="*" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="200"/>
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="200" />
+                <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
             <!--Top Panel-->
@@ -57,12 +57,19 @@
                         Margin="10 0 10 0">
                 <Button Command="{Binding CloseWindowCommand}"
                         CommandParameter="{Binding ElementName=WndMain}"
-                        Style="{StaticResource TopMenuButtonTheme}"
-                        />
+                        Style="{StaticResource TopMenuButtonTheme}">
+                    <Button.Content>
+                        <!--Don't link images in such way, it's a potential warcrime-->
+                        <Image Source="Resources/Images/close.png"></Image>
+                    </Button.Content>
+                </Button>
                 <Button Command="{Binding MinimizeWindowCommand}"
                         CommandParameter="{Binding ElementName=WndMain}"
-                        Style="{StaticResource TopMenuButtonTheme}"
-                        />
+                        Style="{StaticResource TopMenuButtonTheme}">
+                    <Button.Content>
+                        <Image Source="Resources/Images/minimize.png"></Image>
+                    </Button.Content>
+                </Button>
             </StackPanel>
 
             <!--Left Panel-->
@@ -81,8 +88,8 @@
                                FontFamily="Century Gothic"
                                FontStyle="Italic"
                                FontWeight="Bold"
-                               Margin="30,10,0,10">   
-                       AV Analytics
+                               Margin="30,10,0,10">
+                        AV Analytics
                     </TextBlock>
                 </StackPanel>
             </Border>
