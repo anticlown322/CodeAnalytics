@@ -3,9 +3,124 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:UI.MVVM.Views"
              mc:Ignorable="d"
-             d:DesignHeight="300" d:DesignWidth="300">
-    <Grid>
-        <TextBlock>хуй пизда сковрода</TextBlock>
-    </Grid>
+             d:DesignHeight="600"
+             d:DesignWidth="800"
+             Background="Transparent">
+
+    <Border Padding="3">
+        <!--View setup-->
+
+        <!--Layout-->
+        <Grid>
+            <!--Grid setup-->
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="10" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="30" />
+                <RowDefinition Height="30" />
+                <RowDefinition Height="30" />
+                <RowDefinition Height="30" />
+            </Grid.RowDefinitions>
+
+            <!--Operators table-->
+            <DataGrid x:Name="OperatorsGrid"
+                      Grid.Column="0"
+                      Grid.Row="0"
+                      Style="{StaticResource MyDataGrid}"
+                      CellStyle="{StaticResource MyDataGridCell}"
+                      RowStyle="{StaticResource MyDataGridRow}"
+                      ColumnHeaderStyle="{StaticResource MyDataMyGridColumnHeader}">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="j"
+                                        IsReadOnly="True"
+                                        CanUserResize="False"
+                                        Width="*"
+                                        Binding="{Binding}"/>
+                    <DataGridTextColumn Header="Оператор"
+                                        IsReadOnly="True"
+                                        CanUserResize="False"
+                                        Width="3*" />
+                    <DataGridTextColumn Header="F1i"
+                                        IsReadOnly="True"
+                                        CanUserResize="False"
+                                        Width="*" />
+                </DataGrid.Columns>
+            </DataGrid>
+
+            <!--Operands table-->
+            <DataGrid x:Name="OperandsGrid"
+                      Grid.Column="2"
+                      Grid.Row="0"
+                      Style="{StaticResource MyDataGrid}"
+                      CellStyle="{StaticResource MyDataGridCell}"
+                      RowStyle="{StaticResource MyDataGridRow}"
+                      ColumnHeaderStyle="{StaticResource MyDataMyGridColumnHeader}">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="i"
+                                        IsReadOnly="True"
+                                        CanUserResize="False"
+                                        Width="*" />
+                    <DataGridTextColumn Header="Операнд"
+                                        IsReadOnly="True"
+                                        CanUserResize="False"
+                                        Width="3*" />
+                    <DataGridTextColumn Header="F2i"
+                                        IsReadOnly="True"
+                                        CanUserResize="False"
+                                        Width="*" />
+                </DataGrid.Columns>
+            </DataGrid>
+
+            <!--Additional calculations-->
+            <TextBlock Grid.Row="2"
+                       Grid.Column="0"
+                       VerticalAlignment="Center"
+                       FontSize="15"
+                       Foreground="{StaticResource WindowBorderColor1_Solid}"
+                       FontFamily="Century Gothic"
+                       Text="Словарь программы n =" />
+            <TextBlock Grid.Row="3"
+                       Grid.Column="0"
+                       VerticalAlignment="Center"
+                       FontSize="15"
+                       Foreground="{StaticResource WindowBorderColor1_Solid}"
+                       FontFamily="Century Gothic"
+                       Text="Длина программы N =" />
+            <TextBlock Grid.Row="4"
+                       Grid.Column="0"
+                       VerticalAlignment="Center"
+                       FontSize="15"
+                       FontFamily="Century Gothic"
+                       Foreground="{StaticResource WindowBorderColor1_Solid}"
+                       Text="Объем программы V =" />
+
+            <!--Buttons-->
+            <Button Grid.Row="1"
+                    Grid.RowSpan="2"
+                    Grid.Column="2"
+                    Margin="2"
+                    Height="40"
+                    Width="300"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Style="{StaticResource InViewButton}"
+                    Content="Начать анализ" />
+            <Button Grid.Row="3"
+                    Grid.RowSpan="2"
+                    Grid.Column="2"
+                    Margin="2"
+                    Height="40"
+                    Width="300"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Style="{StaticResource InViewButton}"
+                    Content="Загрузить файл для анализа" />
+        </Grid>
+    </Border>
 </UserControl>

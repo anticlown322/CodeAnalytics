@@ -13,6 +13,9 @@
     <Color x:Key="WindowBorderColor1">#6D2FFF</Color>
     <Color x:Key="WindowBorderColor2">#FB539B</Color>
     <Color x:Key="WindowBorderColor3">#836EFB</Color>
+    <SolidColorBrush x:Key="WindowBorderColor1_Solid">#6D2FFF</SolidColorBrush>
+    <SolidColorBrush x:Key="WindowBorderColor2_Solid">#FB539B</SolidColorBrush>
+    <SolidColorBrush x:Key="WindowBorderColor3_Solid">#836EFB</SolidColorBrush>
 
     <!--Font Colors-->
     <Color x:Key="MenuTextColorLight">#eb2553</Color>

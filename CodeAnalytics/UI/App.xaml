@@ -11,6 +11,11 @@
                 <ResourceDictionary Source="Style/UIColors.xaml"/>
                 <ResourceDictionary Source="Style/CustomComponents/LeftMenuButtonTheme.xaml"/>
                 <ResourceDictionary Source="Style/CustomComponents/TopMenuButtonTheme.xaml"/>
+                <ResourceDictionary Source="Style/CustomComponents/InViewButton.xaml"/>
+                <ResourceDictionary Source="Style/CustomComponents/Grid/MyDataGrid.xaml"/>
+                <ResourceDictionary Source="Style/CustomComponents/Grid/MyDataGridCell.xaml"/>
+                <ResourceDictionary Source="Style/CustomComponents/Grid/MyDataGridRow.xaml"/>
+                <ResourceDictionary Source="Style/CustomComponents/Grid/MyDataGridColumnHeader.xaml"/>
             </ResourceDictionary.MergedDictionaries>
 
             <!-- Views -->

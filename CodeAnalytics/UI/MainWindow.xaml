@@ -22,6 +22,7 @@
             BorderThickness="1"
             Opacity="0.97"
             MouseDown="DragWindow">
+        <!--View setup-->
         <Border.BorderBrush>
             <LinearGradientBrush StartPoint="0, 0" EndPoint="1, 1">
                 <GradientStop Color="{StaticResource WindowBorderColor1}" Offset="0"/>
@@ -75,7 +76,7 @@
                                Grid.Column="0"
                                HorizontalAlignment="Left"
                                VerticalAlignment="Center"
-                               Foreground="{StaticResource MenuTextColorLight_Solid}"
+                               Foreground="{StaticResource WindowBorderColor1_Solid}"
                                FontSize="24"
                                FontFamily="Century Gothic"
                                FontStyle="Italic"
