@@ -6,12 +6,33 @@
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
         <UseWPF>true</UseWPF>
+        <ApplicationIcon>Resources\Icons\analyze.ico</ApplicationIcon>
+        <AssemblyName>Scala Code Analyzer</AssemblyName>
     </PropertyGroup>
 
     <ItemGroup>
       <Folder Include="Resources\Files\" />
       <Folder Include="Resources\Icons\" />
       <Folder Include="Resources\Images\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Page Update="Style\CustomComponents\Grid\MyDataGrid.xaml">
+        <Generator>MSBuild:Compile</Generator>
+        <XamlRuntime>Wpf</XamlRuntime>
+        <SubType>Designer</SubType>
+      </Page>
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="Resources\Images\close.png" />
+      <Resource Include="Resources\Images\close.png">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Resource>
+      <None Remove="Resources\Images\minimize.png" />
+      <Resource Include="Resources\Images\minimize.png">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Resource>
     </ItemGroup>
 
 </Project>
