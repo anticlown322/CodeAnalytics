@@ -1,32 +1,51 @@
 ﻿using System.Text;
 
-namespace Lexer;
+namespace CoreTypes.Classes;
 
 public class Lexer
 {
     private string _cleanText;
+    private string _virginText;
 
     public Lexer(string text)
     {
+        _virginText = text;
         _cleanText = CleanText(text);
     }
-    public void PrintOperators()
+    
+    
+    public IEnumerable<Metrika> GetOperatorsSet()
     {
         OperatorFinder operatorFinder = new OperatorFinder();
         var operators = operatorFinder.GetOperators(_cleanText);
-        foreach (var oper in operators)
+        return operators.Where(o => o.Count > 0);
+    }
+    
+    public IEnumerable<Metrika> GetOperandsSet()
+    {
+        OperandFinder operandFinder = new OperandFinder();
+        var operands = operandFinder.GetOperands(_virginText);
+        return operands.Where(o => o.Count > 0);
+    }
+    
+    
+    private void PrintOperators()
+    {
+        OperatorFinder operatorFinder = new OperatorFinder();
+        var operators = operatorFinder.GetOperators(_cleanText);
+        foreach (var oper in operators.Where(oper => oper.Count > 0))
         {
-            Console.WriteLine(oper.Key+ ": " + oper.Value);
+            Console.WriteLine(oper.Name+ ": " + oper.Count);
         }
     }
     
-    public void PrintOperands()
+    private void PrintOperands()
     {
         OperandFinder operandFinder = new OperandFinder();
-        var operands = operandFinder.GetOperands(_cleanText);
-        foreach (var oper in operands)
+        var operands = operandFinder.GetOperands(_virginText);
+        foreach (var oper in operands.Where(oper => oper.Count > 0))
         {
-            Console.WriteLine(oper.Key+ ": " + oper.Value);
+            Console.WriteLine(oper.Name+ ": " + oper.Count);
         }
     }
     

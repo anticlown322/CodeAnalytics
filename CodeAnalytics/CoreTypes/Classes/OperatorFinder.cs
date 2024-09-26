@@ -1,12 +1,12 @@
 ﻿using System.Text;
-namespace Lexer;
+namespace CoreTypes.Classes;
 
 public class OperatorFinder
 {
     private readonly string[] _nonСontroversialOperators =
     [
         "**", "==", "!=", "&&", "||", "~", ">>>", "+=", "-=",
-        "*=", "/=", "%=", "<<=", ">>=", "&=", "^=", "|=", ".", "for", "return"
+        "*=", "/=", "%=", "<<=", ">>=", "&=", "^=", "|=", ".", "=>", "for", "return"
     ];
     private readonly string[] _сontroversialOperators =
     [
@@ -111,42 +111,42 @@ public class OperatorFinder
         return (functions, quantity);
     }
 
-    public Dictionary<string, int> GetOperators(string text)
+    public HashSet<Metrika> GetOperators(string text)
     {
-        var operators = new Dictionary<string, int>();
+        HashSet <Metrika> operators = new();
         
         foreach (var oper in _nonСontroversialOperators)
         {
             var info = CountOccurrences(ref text, oper);
-            operators.Add(info.Name, info.Count);
+            operators.Add(info);
         }
         foreach (var oper in _сontroversialOperators)
         {
             var info = CountOccurrences(ref text, oper);
-            operators.Add(info.Name, info.Count);
+            operators.Add(info);
         }
         foreach (var oper in _veryСontroversialOperators)
         {
             var info = CountOccurrences(ref text, oper);
-            operators.Add(info.Name, info.Count);
+            operators.Add(info);
         }
         
         Metrika[] wordOperators = CountWordOperators(ref text);
         foreach (var wordOper in wordOperators)
         {
-            operators.Add(wordOper.Name, wordOper.Count);
+            operators.Add(wordOper);
         }
         
         var functions = CountFunctions(ref text); //тут надо вернуть и словарь, и общее кол-во функций, чтобы передать их кол-во в метод для нахождения скобок
         foreach (var function in functions.Item1)
         {
-            operators.Add(function.Key, function.Value);
+            operators.Add(new Metrika(function.Key) {Count = function.Value});
         }
         
         wordOperators = CountBraсes(ref text, functions.Item2); // мы передаем кол-во функций, чтобы от кол-ва всех пар круглых скобок отнять те, что принадлежат функциям
         foreach (var wordOper in wordOperators)
         {
-            operators.Add(wordOper.Name, wordOper.Count);
+            operators.Add(wordOper);
         }
 
         return operators;
