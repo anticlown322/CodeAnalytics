@@ -13,21 +13,21 @@ public class Lexer
         _cleanText = CleanText(text);
     }
 
-    public HashSet<Metrika> GetOperatorsSet()
+    public HashSet<Metriс> GetOperatorsSet()
     {
         OperatorFinder operatorFinder = new OperatorFinder();
         var operators = operatorFinder.GetOperators(_cleanText);
         return operators.Where(o => o.Count > 0).ToHashSet();
     }
 
-    public HashSet<Metrika> GetOperandsSet()
+    public HashSet<Metriс> GetOperandsSet()
     {
         OperandFinder operandFinder = new OperandFinder();
         var operands = operandFinder.GetOperands(_virginText);
         return operands.Where(o => o.Count > 0).ToHashSet();
     }
 
-    public (int, int, int) GetTextParams(HashSet<Metrika> operands, HashSet<Metrika> operators)
+    public (int, int, int) GetTextParams(HashSet<Metriс> operands, HashSet<Metriс> operators)
     {
         int nu1 = operators.Count;
         int n1 = 0;

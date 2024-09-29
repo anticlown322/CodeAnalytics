@@ -18,11 +18,11 @@ public class OperatorFinder
         "<", ">", "="
     ];
     
-    private Metrika CountOccurrences(ref string text, string substring)
+    private Metriс CountOccurrences(ref string text, string substring)
     {
         int count = 0;
         int index = 0;
-        Metrika metrika = new (substring);
+        Metriс metriс = new (substring);
         StringBuilder resultText = new ();
         while ((index = text.IndexOf(substring, index, StringComparison.Ordinal)) != -1) 
         {
@@ -31,13 +31,13 @@ public class OperatorFinder
             text = text.Substring(index + substring.Length);
             index = 0;
         }
-        metrika.Count = count;
+        metriс.Count = count;
         resultText.Append(text);
         text = resultText.ToString();
-        return metrika;
+        return metriс;
     }
 
-    private Metrika[] CountWordOperators(ref string text)
+    private Metriс[] CountWordOperators(ref string text)
     {
         int ifCount = CountOccurrences(ref text, "if").Count;
         int elseCount = CountOccurrences(ref text, "else").Count;
@@ -46,22 +46,22 @@ public class OperatorFinder
         int matchCount = CountOccurrences(ref text, "match").Count;
         return
         [
-            new Metrika("if") { Count = ifCount - elseCount },
-            new Metrika("if..else") { Count = elseCount},
-            new Metrika("while") { Count = whileCount - doCount},
-            new Metrika("do..while") { Count = doCount},
-            new Metrika("match..case") { Count = matchCount}
+            new Metriс("if") { Count = ifCount - elseCount },
+            new Metriс("if..else") { Count = elseCount},
+            new Metriс("while") { Count = whileCount - doCount},
+            new Metriс("do..while") { Count = doCount},
+            new Metriс("match..case") { Count = matchCount}
         ];
     }
 
-    private Metrika[] CountBraсes(ref string text, int functionsCount)
+    private Metriс[] CountBraсes(ref string text, int functionsCount)
     {
         int figureBraсeCount = CountOccurrences(ref text, "{").Count;
         int roundBraсeWithFunctionsCount = CountOccurrences(ref text, "(").Count;
         return
         [
-            new Metrika("{..}") { Count = figureBraсeCount },
-            new Metrika("(..)") { Count = roundBraсeWithFunctionsCount - functionsCount },
+            new Metriс("{..}") { Count = figureBraсeCount },
+            new Metriс("(..)") { Count = roundBraсeWithFunctionsCount - functionsCount },
         ];
     }
 
@@ -111,9 +111,9 @@ public class OperatorFinder
         return (functions, quantity);
     }
 
-    public HashSet<Metrika> GetOperators(string text)
+    public HashSet<Metriс> GetOperators(string text)
     {
-        HashSet <Metrika> operators = new();
+        HashSet <Metriс> operators = new();
         
         foreach (var oper in _nonСontroversialOperators)
         {
@@ -131,7 +131,7 @@ public class OperatorFinder
             operators.Add(info);
         }
         
-        Metrika[] wordOperators = CountWordOperators(ref text);
+        Metriс[] wordOperators = CountWordOperators(ref text);
         foreach (var wordOper in wordOperators)
         {
             operators.Add(wordOper);
@@ -140,13 +140,21 @@ public class OperatorFinder
         var functions = CountFunctions(ref text); //тут надо вернуть и словарь, и общее кол-во функций, чтобы передать их кол-во в метод для нахождения скобок
         foreach (var function in functions.Item1)
         {
-            operators.Add(new Metrika(function.Key) {Count = function.Value});
+            operators.Add(new Metriс(function.Key) {Count = function.Value});
         }
         
         wordOperators = CountBraсes(ref text, functions.Item2); // мы передаем кол-во функций, чтобы от кол-ва всех пар круглых скобок отнять те, что принадлежат функциям
         foreach (var wordOper in wordOperators)
         {
             operators.Add(wordOper);
+        }
+
+        //добавление index для тех operators, у которых Count > 0
+        int index = 1;
+        foreach (var oper in operators)
+        {
+            if (oper.Count > 0)
+                oper.Index = index++;
         }
 
         return operators;

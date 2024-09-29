@@ -10,10 +10,19 @@ public class OperandFinder
         "var", "val", "object", "class", "trait"
     ];
 
-    public HashSet<Metrika> GetOperands(string text)
+    public HashSet<Metriс> GetOperands(string text)
     {
         var operands = CountNames(ref text, _operands);
         operands.UnionWith(CountNumbers(ref text));
+        
+        //добавление index для тех operands, у которых Count > 0
+        int index = 1;
+        foreach (var oper in operands)
+        {
+            if (oper.Count > 0)
+                oper.Index = index++;
+        }
+        
         return operands;
     }
 
@@ -34,6 +43,7 @@ public class OperandFinder
     {
         HashSet<string> names = [];
         StringBuilder name = new();
+        
         //идем влево. Если ( или , то это параметр функции. Если нет, то идем вправо
         foreach (var index in indexes)
         {
@@ -73,11 +83,11 @@ public class OperandFinder
         return names;
     }
 
-    private Metrika CountOccurrences(ref string text, string substring)
+    private Metriс CountOccurrences(ref string text, string substring)
     {
       int count = 0;
         int index = 0;
-        Metrika metrika = new (substring);
+        Metriс metriс = new (substring);
         StringBuilder resultText = new ();
         while ((index = text.IndexOf(substring, index, StringComparison.Ordinal)) != -1) 
         {
@@ -86,10 +96,10 @@ public class OperandFinder
             text = text.Substring(index + substring.Length);
             index = 0;
         }
-        metrika.Count = count;
+        metriс.Count = count;
         resultText.Append(text);
         text = resultText.ToString();
-        return metrika;
+        return metriс;
     }
 
     private string[] FindNumbers(ref string text)
@@ -134,7 +144,7 @@ public class OperandFinder
     }
     
     
-    private HashSet<Metrika> CountNames(ref string text, string[] keyWords)
+    private HashSet<Metriс> CountNames(ref string text, string[] keyWords)
     {
         HashSet<string> names = [];
         foreach (var oper in keyWords)
@@ -149,7 +159,7 @@ public class OperandFinder
 
         var arrONames = names.ToArray();
         Array.Sort(arrONames, (a, b) => b.Length - a.Length); 
-        HashSet<Metrika> countedNames = [];
+        HashSet<Metriс> countedNames = [];
         foreach (var name in arrONames)
         {
             var countedName = CountOccurrences(ref text, name);
@@ -159,9 +169,9 @@ public class OperandFinder
         return countedNames;
     }
 
-    private HashSet<Metrika> CountNumbers(ref string text)
+    private HashSet<Metriс> CountNumbers(ref string text)
     {
-        HashSet<Metrika> countedNumbers = [];
+        HashSet<Metriс> countedNumbers = [];
         var numbers = FindNumbers(ref text);
         foreach (var number in numbers)
         {
