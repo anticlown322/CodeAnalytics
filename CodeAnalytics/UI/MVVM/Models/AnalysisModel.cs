@@ -79,9 +79,9 @@ public class AnalysisModel : INotifyPropertyChanged
     public void StartCodeAnalysis(string codeToAnalyze)
     {
         _lexer = new Lexer(codeToAnalyze);
-
-        OperandsSet = _lexer.GetOperandsSet();
+        
         OperatorsSet = _lexer.GetOperatorsSet();
+        OperandsSet = _lexer.GetOperandsSet();
         
         (int, int, int) additionalMetrics = _lexer.GetTextParams(OperandsSet, OperatorsSet);
 

@@ -17,7 +17,7 @@
         <Setter Property="VerticalAlignment" Value="Center" />
         <Setter Property="HorizontalAlignment" Value="Center" />
         <Setter Property="Background" Value="Transparent" />
-        <Setter Property="Foreground" Value="{StaticResource WindowBorderColor1_Solid}" />
+        <Setter Property="Foreground" Value="White" />
         <Setter Property="FontSize" Value="15" />
         <Setter Property="FontFamily" Value="Roboto" />
         <Setter Property="Margin" Value="15 0 15 10" />
