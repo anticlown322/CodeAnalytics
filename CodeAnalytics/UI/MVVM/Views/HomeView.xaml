@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:viewModels="clr-namespace:UI.MVVM.ViewModels"
+             d:DataContext="{d:DesignInstance Type=viewModels:HomeViewModel}"
              mc:Ignorable="d"
              d:DesignHeight="600"
              d:DesignWidth="800"
@@ -11,7 +12,7 @@
     <UserControl.DataContext>
         <viewModels:HomeViewModel />
     </UserControl.DataContext>
-    
+
     <Border Padding="3">
         <!--View setup-->
 
@@ -38,21 +39,24 @@
                       Style="{StaticResource MyDataGrid}"
                       CellStyle="{StaticResource MyDataGridCell}"
                       RowStyle="{StaticResource MyDataGridRow}"
-                      ColumnHeaderStyle="{StaticResource MyDataMyGridColumnHeader}">
+                      ColumnHeaderStyle="{StaticResource MyDataMyGridColumnHeader}"
+                      ItemsSource="{Binding AnalysisModelEntity.OperatorsSet}">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="j"
                                         IsReadOnly="True"
                                         CanUserResize="False"
                                         Width="*"
-                                        Binding="{Binding}"/>
+                                        Binding="{Binding Index}"/>
                     <DataGridTextColumn Header="Оператор"
                                         IsReadOnly="True"
                                         CanUserResize="False"
-                                        Width="3*" />
+                                        Width="3*"
+                                        Binding="{Binding Name}"/>
                     <DataGridTextColumn Header="F1i"
                                         IsReadOnly="True"
                                         CanUserResize="False"
-                                        Width="*" />
+                                        Width="*" 
+                                        Binding="{Binding Count}"/>
                 </DataGrid.Columns>
             </DataGrid>
 
@@ -63,20 +67,24 @@
                       Style="{StaticResource MyDataGrid}"
                       CellStyle="{StaticResource MyDataGridCell}"
                       RowStyle="{StaticResource MyDataGridRow}"
-                      ColumnHeaderStyle="{StaticResource MyDataMyGridColumnHeader}">
+                      ColumnHeaderStyle="{StaticResource MyDataMyGridColumnHeader}"
+                      ItemsSource="{Binding AnalysisModelEntity.OperandsSet}">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="i"
                                         IsReadOnly="True"
                                         CanUserResize="False"
-                                        Width="*" />
+                                        Width="*" 
+                                        Binding="{Binding Index}"/>
                     <DataGridTextColumn Header="Операнд"
                                         IsReadOnly="True"
                                         CanUserResize="False"
-                                        Width="3*" />
+                                        Width="3*" 
+                                        Binding="{Binding Name}"/>
                     <DataGridTextColumn Header="F2i"
                                         IsReadOnly="True"
                                         CanUserResize="False"
-                                        Width="*" />
+                                        Width="*" 
+                                        Binding="{Binding Count}"/>
                 </DataGrid.Columns>
             </DataGrid>
 
@@ -87,21 +95,21 @@
                        FontSize="15"
                        Foreground="{StaticResource WindowBorderColor1_Solid}"
                        FontFamily="Century Gothic"
-                       Text="Словарь программы n =" />
+                       Text="{Binding AnalysisModelEntity.ProgramDictionary, StringFormat=Словарь программы n - {0}}" />
             <TextBlock Grid.Row="3"
                        Grid.Column="0"
                        VerticalAlignment="Center"
                        FontSize="15"
                        Foreground="{StaticResource WindowBorderColor1_Solid}"
                        FontFamily="Century Gothic"
-                       Text="Длина программы N =" />
+                       Text="{Binding AnalysisModelEntity.ProgramLength, StringFormat=Длина программы N - {0}}" />
             <TextBlock Grid.Row="4"
                        Grid.Column="0"
                        VerticalAlignment="Center"
                        FontSize="15"
                        FontFamily="Century Gothic"
                        Foreground="{StaticResource WindowBorderColor1_Solid}"
-                       Text="Объем программы V =" />
+                       Text="{Binding AnalysisModelEntity.ProgramVolume, StringFormat=Объем программы V - {0}}" />
 
             <!--Buttons-->
             <Button Grid.Row="1"
@@ -114,7 +122,7 @@
                     VerticalAlignment="Center"
                     Style="{StaticResource InViewButton}"
                     Content="Начать анализ"
-                    Command="{Binding StartAnalysisCommand}"/>
+                    Command="{Binding StartAnalysisCommand}" />
             <Button Grid.Row="3"
                     Grid.RowSpan="2"
                     Grid.Column="2"
@@ -125,7 +133,7 @@
                     VerticalAlignment="Center"
                     Style="{StaticResource InViewButton}"
                     Content="Загрузить файл для анализа"
-                    Command="{Binding LoadFileCommand}"/>
+                    Command="{Binding  LoadFileCommand}" />
         </Grid>
     </Border>
 </UserControl>

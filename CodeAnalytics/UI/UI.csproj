@@ -35,4 +35,8 @@
       </Resource>
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\CoreTypes\CoreTypes.csproj" />
+    </ItemGroup>
+
 </Project>
