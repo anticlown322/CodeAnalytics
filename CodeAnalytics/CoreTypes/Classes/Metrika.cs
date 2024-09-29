@@ -1,4 +1,4 @@
-﻿namespace Lexer;
+﻿namespace CoreTypes.Classes;
 public class Metrika
 {
     public Metrika(string name)
