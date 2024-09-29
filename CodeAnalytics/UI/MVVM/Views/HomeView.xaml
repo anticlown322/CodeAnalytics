@@ -93,14 +93,14 @@
                        Grid.Column="0"
                        VerticalAlignment="Center"
                        FontSize="15"
-                       Foreground="{StaticResource WindowBorderColor1_Solid}"
+                       Foreground="White"
                        FontFamily="Century Gothic"
                        Text="{Binding AnalysisModelEntity.ProgramDictionary, StringFormat=Словарь программы n - {0}}" />
             <TextBlock Grid.Row="3"
                        Grid.Column="0"
                        VerticalAlignment="Center"
                        FontSize="15"
-                       Foreground="{StaticResource WindowBorderColor1_Solid}"
+                       Foreground="White"
                        FontFamily="Century Gothic"
                        Text="{Binding AnalysisModelEntity.ProgramLength, StringFormat=Длина программы N - {0}}" />
             <TextBlock Grid.Row="4"
@@ -108,7 +108,7 @@
                        VerticalAlignment="Center"
                        FontSize="15"
                        FontFamily="Century Gothic"
-                       Foreground="{StaticResource WindowBorderColor1_Solid}"
+                       Foreground="White"
                        Text="{Binding AnalysisModelEntity.ProgramVolume, StringFormat=Объем программы V - {0}}" />
 
             <!--Buttons-->

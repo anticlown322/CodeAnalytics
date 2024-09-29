@@ -6,11 +6,12 @@ public class OperatorFinder
     private readonly string[] _nonСontroversialOperators =
     [
         "**", "==", "!=", "&&", "||", "~", ">>>", "+=", "-=",
-        "*=", "/=", "%=", "<<=", ">>=", "&=", "^=", "|=", ".", "=>", "for", "return"
+        "*=", "/=", "%=", "<<=", ">>=", "&=", "^=", "|=", ".", "=>", 
+        "foreach", "return", "case"
     ];
     private readonly string[] _сontroversialOperators =
     [
-        "+", "-", "*", "/", "%", ">=", "<=", "!", "&", "|", "^", "<<", ">>"
+        "+", "-", "*", "/", "%", ">=", "<=", "!", "&", "|", "^", "<<", ">>", "for"
     ];
     
     private readonly string[] _veryСontroversialOperators =
