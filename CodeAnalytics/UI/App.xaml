@@ -19,8 +19,12 @@
             </ResourceDictionary.MergedDictionaries>
 
             <!-- Views -->
-            <DataTemplate DataType="{x:Type viewModels:HomeViewModel}">
-                <view:HomeView/>
+            <DataTemplate DataType="{x:Type viewModels:HasltedViewModel}">
+                <view:HalstedView/>
+            </DataTemplate>
+            
+            <DataTemplate DataType="{x:Type viewModels:JilbaViewModel}">
+                <view:JilbaView/>
             </DataTemplate>
         </ResourceDictionary>
     </Application.Resources>

@@ -4,7 +4,7 @@ using CoreTypes.Classes;
 
 namespace UI.MVVM.Models;
 
-public class AnalysisModel : INotifyPropertyChanged
+public class HasltedAnalysisModel : INotifyPropertyChanged
 {
     private string _textToAnalyze;
     private Lexer _lexer;
