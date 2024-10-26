@@ -36,7 +36,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\CoreTypes\CoreTypes.csproj" />
+      <ProjectReference Include="..\HalstedCoreTypes\HalstedCoreTypes.csproj" />
     </ItemGroup>
 
 </Project>
