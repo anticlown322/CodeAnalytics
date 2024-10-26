@@ -7,6 +7,18 @@ namespace JilbaCoreTypes.Classes;
 /// </summary>
 public static class JilbaUtility
 {
+    private static readonly HashSet<string> _nonСontroversialOperators =
+    [
+        "**", "==", "!=", "&&", "||", "~", ">>>", "+=", "-=",
+        "*=", "/=", "%=", "<<=", ">>=", "&=", "^=", "|=", ".", "=>", 
+        "foreach", "return", "case", "+", "-", "*", "/", "%", ">=", 
+        "<=", "!", "&", "|", "^", "<<", ">>", "for", "<", ">", "=",
+        "::", "++", ":+=","+=:","<-","getOrElse ","flatMap", "|>",
+        "@", ":::", "#", "_*", "_", ":", "asInstanceOf", "isInstanceOf",
+        "match", "while", "do-while", "filter", "map", "reduce",
+        "try", "catch", "finally"
+    ];
+    
     /// <summary>
     /// 
     /// </summary>
