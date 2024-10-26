@@ -5,7 +5,7 @@
            x:Key="LeftMenuButtonTheme">
         <Style.Resources>
             <LinearGradientBrush x:Key="InnerTextColor">
-                <GradientStop Color="{StaticResource MenuTextColorLight}" 
+                <GradientStop Color="{StaticResource WindowBorderColor1}" 
                               Offset="0" />
                 <GradientStop Color="{StaticResource MenuTextColorDark}" 
                               Offset="1" />

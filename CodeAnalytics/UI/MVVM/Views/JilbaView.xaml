@@ -10,13 +10,15 @@
     <Border Padding="3">
         <Grid>
             <Grid.ColumnDefinitions>
-                
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
             </Grid.RowDefinitions>     
-            
-            <TextBlock Text="хуй пизда сковорода" Foreground="Azure"></TextBlock>
         </Grid>
     </Border>
 </UserControl>
