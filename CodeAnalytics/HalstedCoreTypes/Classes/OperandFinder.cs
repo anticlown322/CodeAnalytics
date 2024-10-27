@@ -6,7 +6,7 @@ public class OperandFinder
 {
     private readonly string[] _operands =
     [
-        "Byte", "Short", "Int", "Long", "Float", "Double", "Char", "String", "Boolean", 
+        "Byte", "Short", "Int", "Long", "Float", "Double", "Char", "String", "Boolean",
         "var", "val", "object", "class", "trait"
     ];
 
@@ -14,7 +14,7 @@ public class OperandFinder
     {
         var operands = CountNames(ref text, _operands);
         operands.UnionWith(CountNumbers(ref text));
-        
+
         //добавление index для тех operands, у которых Count > 0
         int index = 1;
         foreach (var oper in operands)
@@ -22,7 +22,7 @@ public class OperandFinder
             if (oper.Count > 0)
                 oper.Index = index++;
         }
-        
+
         return operands;
     }
 
@@ -36,6 +36,7 @@ public class OperandFinder
             indexes.Add(index);
             index = text.IndexOf(keyWord, index + keyWord.Length, StringComparison.Ordinal);
         }
+
         return indexes;
     }
 
@@ -43,7 +44,7 @@ public class OperandFinder
     {
         HashSet<string> names = [];
         StringBuilder name = new();
-        
+
         //идем влево. Если ( или , то это параметр функции. Если нет, то идем вправо
         foreach (var index in indexes)
         {
@@ -78,24 +79,26 @@ public class OperandFinder
                 names.Add(name.ToString());
                 name.Clear();
             }
-           
         }
+
         return names;
     }
 
     private Metriс CountOccurrences(ref string text, string substring)
     {
-      int count = 0;
+        int count = 0;
         int index = 0;
-        Metriс metriс = new (substring);
-        StringBuilder resultText = new ();
-        while ((index = text.IndexOf(substring, index, StringComparison.Ordinal)) != -1) 
+        Metriс metriс = new(substring);
+        StringBuilder resultText = new();
+        
+        while ((index = text.IndexOf(substring, index, StringComparison.Ordinal)) != -1)
         {
             count++;
             resultText.Append(text.Substring(0, index)).Append(new string('#', substring.Length));
             text = text.Substring(index + substring.Length);
             index = 0;
         }
+
         metriс.Count = count;
         resultText.Append(text);
         text = resultText.ToString();
@@ -111,7 +114,6 @@ public class OperandFinder
         {
             if (char.IsDigit(text[i]))
             {
-                
                 while (i < text.Length && (char.IsDigit(text[i]) || text[i] == ','))
                 {
                     number.Append(text[i++]);
@@ -127,7 +129,7 @@ public class OperandFinder
 
             i++;
         }
-        
+
         int[] intResult = new int[numbers.Count];
         string[] strResult = numbers.ToArray();
         for (int j = 0; j < numbers.Count; j++)
@@ -135,14 +137,14 @@ public class OperandFinder
             intResult[j] = int.Parse(strResult[j]);
         }
 
-        Array.Sort(intResult, (a, b) => b.CompareTo(a)); 
+        Array.Sort(intResult, (a, b) => b.CompareTo(a));
         for (int j = 0; j < numbers.Count; j++)
         {
             strResult[j] = intResult[j].ToString();
         }
+
         return strResult;
     }
-    
     
     private HashSet<Metriс> CountNames(ref string text, string[] keyWords)
     {
@@ -158,14 +160,14 @@ public class OperandFinder
         }
 
         var arrONames = names.ToArray();
-        Array.Sort(arrONames, (a, b) => b.Length - a.Length); 
+        Array.Sort(arrONames, (a, b) => b.Length - a.Length);
         HashSet<Metriс> countedNames = [];
         foreach (var name in arrONames)
         {
             var countedName = CountOccurrences(ref text, name);
             countedNames.Add(countedName);
         }
-        
+
         return countedNames;
     }
 
@@ -178,9 +180,50 @@ public class OperandFinder
             var countedNumber = CountOccurrences(ref text, number);
             countedNumbers.Add(countedNumber);
         }
+
         return countedNumbers;
+    }
+
+    private string[] FindStringLiterals(string text)
+    {
+        HashSet<string> literals = [];
+        int i = 0;
+        StringBuilder literal = new StringBuilder();
+        
+        while (i < text.Length)
+        {
+            if (text[i] == '"')
+            {
+                i++;
+                
+                while (i < text.Length && text[i] != '"')
+                {
+                    literal.Append(text[i++]);
+                }
+
+                literals.Add(literal.ToString());
+                literal.Clear();
+            }
+            
+            i++;
+        }
+
+        string[] strResult = literals.ToArray();
+        return strResult;   
     }
     
     
-    
+    public HashSet<Metriс> CountStringLiterals(string text)
+    {
+        HashSet<Metriс> countedLiterals = [];
+        var literals = FindStringLiterals(text);
+
+        foreach (var literal in literals)
+        {
+            var countedLiteral = CountOccurrences(ref text, literal);
+            countedLiterals.Add(countedLiteral);
+        }
+
+        return countedLiterals;
+    }
 }

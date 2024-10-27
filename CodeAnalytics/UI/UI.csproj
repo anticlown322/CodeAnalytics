@@ -36,7 +36,8 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\CoreTypes\CoreTypes.csproj" />
+      <ProjectReference Include="..\HalstedCoreTypes\HalstedCoreTypes.csproj" />
+      <ProjectReference Include="..\JilbaCoreTypes\JilbaCoreTypes.csproj" />
     </ItemGroup>
 
 </Project>

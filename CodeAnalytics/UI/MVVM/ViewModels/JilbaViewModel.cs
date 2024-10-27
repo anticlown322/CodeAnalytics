@@ -3,22 +3,35 @@ using UI.MVVM.Models;
 
 namespace UI.MVVM.ViewModels;
 
-public class HomeViewModel : ObservableObject
+public class JilbaViewModel  : ObservableObject
 {
-    /* code analytics */
     private string _codeToAnalyze = "";
-    private AnalysisModel _analysisModel;
+    private JilbaAnalysisModel _jilbaAnalysisModel;
 
-    public AnalysisModel AnalysisModelEntity
+    #region Properties for private fields
+
+    public JilbaAnalysisModel JilbaAnalysisModelEntity
     {
-        get => _analysisModel;
+        get => _jilbaAnalysisModel;
         set
         {
-            _analysisModel = value;
+            _jilbaAnalysisModel = value;
+            OnPropertyChanged();
+        }
+    }
+    
+    public string CodeToAnalyze
+    {
+        get => _codeToAnalyze;
+        set
+        {
+            _codeToAnalyze = value;
             OnPropertyChanged();
         }
     }
 
+    #endregion
+    
     /* utility */
     private readonly IFileService _fileService = new TextFileService();
     readonly IDialogService _dialogService = new DefaultDialogService();
@@ -27,18 +40,17 @@ public class HomeViewModel : ObservableObject
     public RelayCommand StartAnalysisCommand { get; set; }
     public RelayCommand LoadFileCommand { get; set; }
     
-
-    public HomeViewModel()
+    public JilbaViewModel()
     {
         StartAnalysisCommand = new RelayCommand(StartAnalysis);
         LoadFileCommand = new RelayCommand(LoadFile);
-        _analysisModel = new AnalysisModel();
+        _jilbaAnalysisModel = new JilbaAnalysisModel();
     }
-
+    
     //Better to store commands in separate files 
     void StartAnalysis(object parameter)
     {
-        _analysisModel.StartCodeAnalysis(_codeToAnalyze);
+        _jilbaAnalysisModel.StartCodeAnalysis(CodeToAnalyze);
     }
 
     void LoadFile(object parameter)
@@ -46,7 +58,10 @@ public class HomeViewModel : ObservableObject
         try
         {
             if (_dialogService.OpenFileDialog())
-                _codeToAnalyze = _fileService.OpenFile(_dialogService.FilePath);
+            {
+                CodeToAnalyze = _fileService.OpenFile(_dialogService.FilePath);
+            }
+                
         }
         catch (Exception ex)
         {

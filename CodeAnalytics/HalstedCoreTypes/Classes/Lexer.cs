@@ -10,7 +10,6 @@ public class Lexer
     public Lexer(string text)
     {
         _virginText = text;
-        _cleanText = CleanText(text);
     }
 
     public HashSet<Metriс> GetOperatorsSet()
@@ -23,7 +22,9 @@ public class Lexer
     public HashSet<Metriс> GetOperandsSet()
     {
         OperandFinder operandFinder = new OperandFinder();
-        var operands = operandFinder.GetOperands(_virginText);
+        var operands = operandFinder.CountStringLiterals(_virginText);
+        _cleanText = CleanText(_virginText);
+        operands.UnionWith(operandFinder.GetOperands(_virginText));
         return operands.Where(o => o.Count > 0).ToHashSet();
     }
 
@@ -47,7 +48,7 @@ public class Lexer
         return (nu1 + nu2, n1 + n2, (int)v);
     }
 
-    private string CleanText(string text)
+    public string CleanText(string text)
     {
         StringBuilder textBuilder = new StringBuilder();
         int i = 0;

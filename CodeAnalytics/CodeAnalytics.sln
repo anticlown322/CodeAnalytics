@@ -2,7 +2,9 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UI", "UI\UI.csproj", "{A66F45BA-5746-4AD7-B65C-0ED66A1C1341}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoreTypes", "CoreTypes\CoreTypes.csproj", "{AEC6081A-71CC-4A26-A427-7A96EDBC2932}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HalstedCoreTypes", "HalstedCoreTypes\HalstedCoreTypes.csproj", "{AEC6081A-71CC-4A26-A427-7A96EDBC2932}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JilbaCoreTypes", "JilbaCoreTypes\JilbaCoreTypes.csproj", "{5FCE7815-B2C1-4CA4-AA06-71677E359083}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -18,5 +20,9 @@ Global
 		{AEC6081A-71CC-4A26-A427-7A96EDBC2932}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AEC6081A-71CC-4A26-A427-7A96EDBC2932}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AEC6081A-71CC-4A26-A427-7A96EDBC2932}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5FCE7815-B2C1-4CA4-AA06-71677E359083}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5FCE7815-B2C1-4CA4-AA06-71677E359083}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5FCE7815-B2C1-4CA4-AA06-71677E359083}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5FCE7815-B2C1-4CA4-AA06-71677E359083}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

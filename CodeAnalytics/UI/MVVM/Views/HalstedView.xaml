@@ -1,16 +1,16 @@
-<UserControl x:Class="UI.MVVM.Views.HomeView"
+<UserControl x:Class="UI.MVVM.Views.HalstedView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:viewModels="clr-namespace:UI.MVVM.ViewModels"
-             d:DataContext="{d:DesignInstance Type=viewModels:HomeViewModel}"
+             d:DataContext="{d:DesignInstance Type=viewModels:HasltedViewModel}"
              mc:Ignorable="d"
              d:DesignHeight="600"
              d:DesignWidth="800"
              Background="Transparent">
     <UserControl.DataContext>
-        <viewModels:HomeViewModel />
+        <viewModels:HasltedViewModel />
     </UserControl.DataContext>
 
     <Border Padding="3">
@@ -40,7 +40,7 @@
                       CellStyle="{StaticResource MyDataGridCell}"
                       RowStyle="{StaticResource MyDataGridRow}"
                       ColumnHeaderStyle="{StaticResource MyDataMyGridColumnHeader}"
-                      ItemsSource="{Binding AnalysisModelEntity.OperatorsSet}">
+                      ItemsSource="{Binding HasltedAnalysisModelEntity.OperatorsSet}">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="j"
                                         IsReadOnly="True"
@@ -68,7 +68,7 @@
                       CellStyle="{StaticResource MyDataGridCell}"
                       RowStyle="{StaticResource MyDataGridRow}"
                       ColumnHeaderStyle="{StaticResource MyDataMyGridColumnHeader}"
-                      ItemsSource="{Binding AnalysisModelEntity.OperandsSet}">
+                      ItemsSource="{Binding HasltedAnalysisModelEntity.OperandsSet}">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="i"
                                         IsReadOnly="True"
@@ -95,21 +95,21 @@
                        FontSize="15"
                        Foreground="White"
                        FontFamily="Century Gothic"
-                       Text="{Binding AnalysisModelEntity.ProgramDictionary, StringFormat=Словарь программы n - {0}}" />
+                       Text="{Binding HasltedAnalysisModelEntity.ProgramDictionary, StringFormat=Словарь программы n - {0}}" />
             <TextBlock Grid.Row="3"
                        Grid.Column="0"
                        VerticalAlignment="Center"
                        FontSize="15"
                        Foreground="White"
                        FontFamily="Century Gothic"
-                       Text="{Binding AnalysisModelEntity.ProgramLength, StringFormat=Длина программы N - {0}}" />
+                       Text="{Binding HasltedAnalysisModelEntity.ProgramLength, StringFormat=Длина программы N - {0}}" />
             <TextBlock Grid.Row="4"
                        Grid.Column="0"
                        VerticalAlignment="Center"
                        FontSize="15"
                        FontFamily="Century Gothic"
                        Foreground="White"
-                       Text="{Binding AnalysisModelEntity.ProgramVolume, StringFormat=Объем программы V - {0}}" />
+                       Text="{Binding HasltedAnalysisModelEntity.ProgramVolume, StringFormat=Объем программы V - {0}}" />
 
             <!--Buttons-->
             <Button Grid.Row="1"

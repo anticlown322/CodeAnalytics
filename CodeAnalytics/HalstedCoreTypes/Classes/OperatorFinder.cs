@@ -25,6 +25,7 @@ public class OperatorFinder
         int index = 0;
         Metriс metriс = new (substring);
         StringBuilder resultText = new ();
+        
         while ((index = text.IndexOf(substring, index, StringComparison.Ordinal)) != -1) 
         {
             count++;
@@ -32,6 +33,7 @@ public class OperatorFinder
             text = text.Substring(index + substring.Length);
             index = 0;
         }
+        
         metriс.Count = count;
         resultText.Append(text);
         text = resultText.ToString();
@@ -72,6 +74,7 @@ public class OperatorFinder
         int i = 0;
         int leftShift = 0;
         Dictionary<string, int> functions = new();
+        
         while (i < text.Length)
         {
             if (text[i] == '(')
@@ -85,12 +88,14 @@ public class OperatorFinder
                 if (char.IsLetterOrDigit(text[i])) // если текущий символ не буква/цифра, то это не название функции
                 {
                     StringBuilder functionNameBuilder = new StringBuilder();
+                    
                     while (i >= 0 && char.IsLetterOrDigit(text[i]))
                     {
                         functionNameBuilder.Append(text[i]);
                         i--;
                         leftShift++;
-                    } 
+                    }
+                    
                     string functionName = new string(functionNameBuilder.ToString().Reverse().ToArray()) + "()";
                     if (!functions.TryAdd(functionName, 1))
                     {

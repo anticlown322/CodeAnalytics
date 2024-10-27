@@ -91,6 +91,16 @@
                                Margin="30,10,0,10">
                         AV Analytics
                     </TextBlock>
+                    
+                    <RadioButton Content="Halsted"
+                                 Style="{StaticResource LeftMenuButtonTheme}"
+                                 IsChecked="True"
+                                 Command="{Binding HalstedViewCommand}"/>
+
+                    <RadioButton Content="Jilba" 
+                                 Style="{StaticResource LeftMenuButtonTheme}"
+                                 Command="{Binding JilbaViewCommand}"/>
+
                 </StackPanel>
             </Border>
 

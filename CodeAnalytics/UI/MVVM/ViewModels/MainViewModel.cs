@@ -1,19 +1,25 @@
 using System.Windows;
 using UI.Core;
+using UI.MVVM.Models;
 
 namespace UI.MVVM.ViewModels;
 
 public class MainViewModel : ObservableObject
 {
     //view models
-    public HomeViewModel HomeVm { get; set; }
+    public HasltedViewModel HasltedVm { get; set; }
+    public JilbaViewModel JilbaVm { get; set; }
 
     //top menu commands
     public RelayCommand MinimizeWindowCommand { get; set; }
     public RelayCommand CloseWindowCommand { get; set; }
+    
+    //left menu commands
+    public RelayCommand HalstedViewCommand { get; set; }
+    public RelayCommand JilbaViewCommand { get; set; }
 
+    //current view
     private object _currentView;
-
     public object CurrentView
     {
         get { return _currentView; }
@@ -27,13 +33,16 @@ public class MainViewModel : ObservableObject
     public MainViewModel()
     {
         //viewModels init
-        HomeVm = new HomeViewModel();
+        HasltedVm = new HasltedViewModel();
+        JilbaVm = new JilbaViewModel();
 
-        CurrentView = HomeVm; //testerView = homepage
+        CurrentView = HasltedVm; //HasltedVm = homepage
         
         //top menu
         MinimizeWindowCommand = new RelayCommand(MinimizeWindow);
         CloseWindowCommand = new RelayCommand(CloseWindow);
+        HalstedViewCommand = new RelayCommand(obj => CurrentView = HasltedVm );
+        JilbaViewCommand = new RelayCommand(obj => CurrentView = JilbaVm );
     }
     
     void MinimizeWindow(object parameter)

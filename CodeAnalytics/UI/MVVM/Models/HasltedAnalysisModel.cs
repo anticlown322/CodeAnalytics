@@ -4,7 +4,7 @@ using CoreTypes.Classes;
 
 namespace UI.MVVM.Models;
 
-public class AnalysisModel : INotifyPropertyChanged
+public class HasltedAnalysisModel : INotifyPropertyChanged
 {
     private string _textToAnalyze;
     private Lexer _lexer;
@@ -79,10 +79,10 @@ public class AnalysisModel : INotifyPropertyChanged
     public void StartCodeAnalysis(string codeToAnalyze)
     {
         _lexer = new Lexer(codeToAnalyze);
-        
-        OperatorsSet = _lexer.GetOperatorsSet();
+
         OperandsSet = _lexer.GetOperandsSet();
-        
+        OperatorsSet = _lexer.GetOperatorsSet();
+
         (int, int, int) additionalMetrics = _lexer.GetTextParams(OperandsSet, OperatorsSet);
 
         ProgramDictionary = additionalMetrics.Item1;
