@@ -27,6 +27,15 @@ using Antlr4.Runtime.Atn;
 using Antlr4.Runtime.Misc;
 using DFA = Antlr4.Runtime.Dfa.DFA;
 
+/// <summary>
+/// Класс, сгенерированный с помощью ANTLR4.
+/// <remarks>
+/// Является почти полноценным лексером
+/// Из проблем - в спецификации не было деления :)
+/// Да и токены назвались T__0 и т.д.
+/// вместо понятных названий
+/// </remarks>
+/// </summary>
 [System.CodeDom.Compiler.GeneratedCode("ANTLR", "4.13.2")]
 [System.CLSCompliant(false)]
 public partial class ScalaLexer : Lexer {
@@ -34,10 +43,10 @@ public partial class ScalaLexer : Lexer {
 	protected static PredictionContextCache sharedContextCache = new PredictionContextCache();
 	public const int
 		T__0=1, T__1=2, T__2=3, T__3=4, T__4=5, T__5=6, T__6=7, T__7=8, T__8=9, 
-		T__9=10, T__10=11, T__11=12, T__12=13, T__13=14, T__14=15, T__15=16, T__16=17, 
-		T__17=18, T__18=19, T__19=20, T__20=21, T__21=22, T__22=23, T__23=24, 
+		T__9=10, T__10=11, T__11=12, OPN_BRKT=13, CLS_BRKT=14, T__14=15, T__15=16, T__16=17, 
+		T__17=18, T__18=19, T__19=20, T__20=21, T__21=22, IF=23, T__23=24, 
 		T__24=25, T__25=26, T__26=27, T__27=28, T__28=29, T__29=30, T__30=31, 
-		T__31=32, T__32=33, T__33=34, T__34=35, T__35=36, T__36=37, T__37=38, 
+		T__31=32, T__32=33, T__33=34, MATCH=35, T__35=36, T__36=37, T__37=38, 
 		T__38=39, T__39=40, T__40=41, T__41=42, T__42=43, T__43=44, T__44=45, 
 		T__45=46, T__46=47, T__47=48, T__48=49, T__49=50, T__50=51, T__51=52, 
 		T__52=53, T__53=54, T__54=55, T__55=56, T__56=57, T__57=58, T__58=59, 
@@ -84,11 +93,44 @@ public partial class ScalaLexer : Lexer {
 	}
 
 	private static readonly string[] _LiteralNames = {
-		null, "'-'", "'null'", "'.'", "','", "'this'", "'super'", "'['", "']'", 
-		"'=>'", "'('", "')'", "'forSome'", "'{'", "'}'", "'type'", "'val'", "'with'", 
-		"'#'", "':'", "'_'", "'*'", "'implicit'", "'if'", "'else'", "'while'", 
-		"'try'", "'catch'", "'finally'", "'do'", "'for'", "'yield'", "'throw'", 
-		"'return'", "'='", "'match'", "'+'", "'~'", "'!'", "'new'", "'lazy'", 
+		null, 
+		"'-'", //0
+		"'null'", 
+		"'.'", 
+		"','", 
+		"'this'", 
+		"'super'", 
+		"'['", 
+		"']'", 
+		"'=>'", 
+		"'('", 
+		"')'", 
+		"'forSome'", 
+		"'{'", //13
+		"'}'", //14
+		"'type'", 
+		"'val'", 
+		"'with'", 
+		"'#'", 
+		"':'", 
+		"'_'", 
+		"'*'", 
+		"'implicit'", 
+		"'if'", //23
+		"'else'", 
+		"'while'", 
+		"'try'", 
+		"'catch'", 
+		"'finally'", 
+		"'do'", 
+		"'for'", 
+		"'yield'", 
+		"'throw'", 
+		"'return'", 
+		"'='", 
+		"'match'", //35
+		"'+'",
+		"'~'", "'!'", "'new'", "'lazy'", 
 		"'<-'", "'case'", "'|'", "'@'", "'>:'", "'<:'", "'<%'", "'var'", "'override'", 
 		"'abstract'", "'final'", "'sealed'", "'private'", "'protected'", "'import'", 
 		"'def'", "'class'", "'object'", "'trait'", "'extends'", "'package'"

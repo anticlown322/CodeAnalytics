@@ -3,21 +3,79 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:viewModels="clr-namespace:UI.MVVM.ViewModels"
+             d:DataContext="{d:DesignInstance Type=viewModels:JilbaViewModel}"
              mc:Ignorable="d"
              d:DesignHeight="600"
              d:DesignWidth="800"
              Background="Transparent">
+    <UserControl.DataContext>
+        <viewModels:JilbaViewModel />
+    </UserControl.DataContext>
+
     <Border Padding="3">
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-            </Grid.RowDefinitions>     
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <TextBox x:Name="CodeTextBox"
+                     Grid.Column="0"
+                     Grid.Row="0"
+                     Grid.RowSpan="2"
+                     Margin="5"
+                     FontSize="10"
+                     FontFamily="Jetbrains Mono"
+                     IsReadOnly="True"
+                     VerticalScrollBarVisibility="Auto"
+                     HorizontalScrollBarVisibility="Auto"
+                     Text="{Binding CodeToAnalyze}"/>
+
+            <StackPanel Grid.Column="1"
+                        Grid.Row="0">
+                <TextBlock Margin="5"
+                           FontSize="18"
+                           FontFamily="Jetbrains Mono"
+                           Foreground="White"
+                           Text="{Binding JilbaAnalysisModelEntity.NumOfOperators, StringFormat=Количество операторов - {0}}" />
+                <TextBlock Margin="5"
+                           FontSize="16"
+                           FontFamily="Jetbrains Mono"
+                           Foreground="White"
+                           Text="{Binding JilbaAnalysisModelEntity.NumOfBranchStatements, StringFormat=Абсолютная сложность - {0}}" />
+                <TextBlock Margin="5"
+                           FontSize="16"
+                           FontFamily="Jetbrains Mono"
+                           Foreground="White"
+                           Text="{Binding JilbaAnalysisModelEntity.RelativeComplexity, StringFormat=Относительная сложность - {0}}" />
+                <TextBlock Margin="5"
+                           FontSize="16"
+                           FontFamily="Jetbrains Mono"
+                           Foreground="White"
+                           Text="{Binding JilbaAnalysisModelEntity.MaxNestingLevel, StringFormat=Макс. уровень вложжености - {0}}" />
+            </StackPanel>
+
+            <StackPanel Grid.Column="1"
+                        Grid.Row="1"
+                        VerticalAlignment="Bottom">
+                <Button Margin="5"
+                        Height="40"
+                        Width="300"
+                        Style="{StaticResource InViewButton}"
+                        Content="Начать анализ"
+                        Command="{Binding StartAnalysisCommand}" />
+                <Button Margin="5"
+                        Height="40"
+                        Width="300"
+                        Style="{StaticResource InViewButton}"
+                        Content="Загрузить файл"
+                        Command="{Binding LoadFileCommand}" />
+            </StackPanel>
         </Grid>
     </Border>
 </UserControl>

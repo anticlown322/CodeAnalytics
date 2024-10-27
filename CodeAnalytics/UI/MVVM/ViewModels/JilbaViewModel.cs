@@ -5,10 +5,11 @@ namespace UI.MVVM.ViewModels;
 
 public class JilbaViewModel  : ObservableObject
 {
-    /* code analytics */
     private string _codeToAnalyze = "";
     private JilbaAnalysisModel _jilbaAnalysisModel;
-    
+
+    #region Properties for private fields
+
     public JilbaAnalysisModel JilbaAnalysisModelEntity
     {
         get => _jilbaAnalysisModel;
@@ -18,6 +19,18 @@ public class JilbaViewModel  : ObservableObject
             OnPropertyChanged();
         }
     }
+    
+    public string CodeToAnalyze
+    {
+        get => _codeToAnalyze;
+        set
+        {
+            _codeToAnalyze = value;
+            OnPropertyChanged();
+        }
+    }
+
+    #endregion
     
     /* utility */
     private readonly IFileService _fileService = new TextFileService();
@@ -37,7 +50,7 @@ public class JilbaViewModel  : ObservableObject
     //Better to store commands in separate files 
     void StartAnalysis(object parameter)
     {
-        //_jilbaAnalysisModel.StartCodeAnalysis(_codeToAnalyze);
+        _jilbaAnalysisModel.StartCodeAnalysis(CodeToAnalyze);
     }
 
     void LoadFile(object parameter)
@@ -45,7 +58,10 @@ public class JilbaViewModel  : ObservableObject
         try
         {
             if (_dialogService.OpenFileDialog())
-                _codeToAnalyze = _fileService.OpenFile(_dialogService.FilePath);
+            {
+                CodeToAnalyze = _fileService.OpenFile(_dialogService.FilePath);
+            }
+                
         }
         catch (Exception ex)
         {
