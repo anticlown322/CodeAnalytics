@@ -43,11 +43,11 @@ public partial class ScalaLexer : Lexer {
 	protected static PredictionContextCache sharedContextCache = new PredictionContextCache();
 	public const int
 		T__0=1, T__1=2, T__2=3, T__3=4, T__4=5, T__5=6, T__6=7, T__7=8, T__8=9, 
-		T__9=10, T__10=11, T__11=12, OPN_BRKT=13, CLS_BRKT=14, T__14=15, T__15=16, T__16=17, 
+		T__9=10, T__10=11, FOR_SOME=12, OPN_BRKT=13, CLS_BRKT=14, T__14=15, T__15=16, T__16=17, 
 		T__17=18, T__18=19, T__19=20, T__20=21, T__21=22, IF=23, T__23=24, 
-		T__24=25, T__25=26, T__26=27, T__27=28, T__28=29, T__29=30, T__30=31, 
+		WHILE=25, T__25=26, T__26=27, T__27=28, DO=29, FOR=30, T__30=31, 
 		T__31=32, T__32=33, T__33=34, MATCH=35, T__35=36, T__36=37, T__37=38, 
-		T__38=39, T__39=40, T__40=41, T__41=42, T__42=43, T__43=44, T__44=45, 
+		T__38=39, T__39=40, T__40=41, CASE=42, T__42=43, T__43=44, T__44=45, 
 		T__45=46, T__46=47, T__47=48, T__48=49, T__49=50, T__50=51, T__51=52, 
 		T__52=53, T__53=54, T__54=55, T__55=56, T__56=57, T__57=58, T__58=59, 
 		T__59=60, T__60=61, Id=62, BooleanLiteral=63, CharacterLiteral=64, SymbolLiteral=65, 
@@ -105,7 +105,7 @@ public partial class ScalaLexer : Lexer {
 		"'=>'", 
 		"'('", 
 		"')'", 
-		"'forSome'", 
+		"'forSome'", //12
 		"'{'", //13
 		"'}'", //14
 		"'type'", 
@@ -118,20 +118,25 @@ public partial class ScalaLexer : Lexer {
 		"'implicit'", 
 		"'if'", //23
 		"'else'", 
-		"'while'", 
+		"'while'", //25
 		"'try'", 
 		"'catch'", 
 		"'finally'", 
-		"'do'", 
-		"'for'", 
+		"'do'", //29
+		"'for'", //30
 		"'yield'", 
 		"'throw'", 
 		"'return'", 
 		"'='", 
 		"'match'", //35
 		"'+'",
-		"'~'", "'!'", "'new'", "'lazy'", 
-		"'<-'", "'case'", "'|'", "'@'", "'>:'", "'<:'", "'<%'", "'var'", "'override'", 
+		"'~'", 
+		"'!'", 
+		"'new'", 
+		"'lazy'", 
+		"'<-'", 
+		"'case'", //42
+		"'|'", "'@'", "'>:'", "'<:'", "'<%'", "'var'", "'override'", 
 		"'abstract'", "'final'", "'sealed'", "'private'", "'protected'", "'import'", 
 		"'def'", "'class'", "'object'", "'trait'", "'extends'", "'package'"
 	};

@@ -35,10 +35,15 @@ public class JilbaAnalyzer
         {
             int tokenType = token.Type;
 
-            if (tokenType < _lastOperatorNumber)
+            if (tokenType <= _lastOperatorNumber)
                 _numOfOperators++;
             
-            if (ScalaLexer.IF == tokenType || ScalaLexer.MATCH == tokenType)
+            if (ScalaLexer.IF == tokenType 
+                || ScalaLexer.CASE == tokenType 
+                || ScalaLexer.FOR == tokenType
+                || ScalaLexer.FOR_SOME == tokenType
+                || ScalaLexer.DO == tokenType
+                || ScalaLexer.WHILE == tokenType)
                 _numOfBranchStatements++;
 
             if (ScalaLexer.OPN_BRKT == tokenType)
