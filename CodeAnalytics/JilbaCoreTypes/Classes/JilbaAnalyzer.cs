@@ -20,8 +20,9 @@ public class JilbaAnalyzer
     public void AnalyzeCode(string codeToAnalyze)
     {
         _codeToAnalyze = codeToAnalyze;
-        const int _lastOperatorNumber = 61; //это номер последнего из типов токенов, принадлежащих операторам
         int currNestingLevel = 0;
+        _numOfOperators = 0; 
+        List <String> idOperators = ["+=", "-=", "*=", "/=", "println", "default"]; 
         
         //get tokens
         AntlrInputStream inputStream = new AntlrInputStream(_codeToAnalyze);
@@ -35,7 +36,15 @@ public class JilbaAnalyzer
         {
             int tokenType = token.Type;
 
-            if (tokenType <= _lastOperatorNumber)
+            if (ScalaLexer.IF == tokenType 
+                || ScalaLexer.MATCH == tokenType 
+                || ScalaLexer.CASE == tokenType 
+                || ScalaLexer.FOR == tokenType
+                || ScalaLexer.FOR_SOME == tokenType
+                || ScalaLexer.DO == tokenType
+                || ScalaLexer.WHILE == tokenType
+                || (ScalaLexer.Id == tokenType && idOperators.Contains(token.Text))
+                || ScalaLexer.ASSIGN_VALUE == tokenType)
                 _numOfOperators++;
             
             if (ScalaLexer.IF == tokenType 
@@ -46,7 +55,8 @@ public class JilbaAnalyzer
                 || ScalaLexer.WHILE == tokenType)
                 _numOfBranchStatements++;
 
-            if (ScalaLexer.OPN_BRKT == tokenType)
+            if (ScalaLexer.OPN_BRKT == tokenType
+                || ScalaLexer.CASE == tokenType)
                 currNestingLevel++;
 
             if (ScalaLexer.CLS_BRKT == tokenType)
@@ -57,6 +67,7 @@ public class JilbaAnalyzer
         }
 
         //complexity
+        _maxNestingLevel -= 1;
         _relativeComplexity = Math.Round(_numOfBranchStatements / (float)_numOfOperators, 5);
     }
     
